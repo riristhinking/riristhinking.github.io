@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Riri</title>
+  <meta name="description" content="A new Riri arrives every day. Different outfits, same freedom of thought." />
+
+  <!-- ============================================================
+       TikTok URL verification (Developer Portal)
+       When you register this site under TikTok for Developers, the
+       portal gives you ONE line to paste. Replace the content value
+       below with the token it shows, then redeploy.
+       (Alternative file method: drop the tiktok<token>.txt file the
+        portal provides into this repo's root.)
+       ============================================================ -->
+  <meta name="tiktok-developers-site-verification" content="REPLACE_WITH_TIKTOK_TOKEN" />
+
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --ink: #141414;
+      --sub: #8C8C8C;
+      --line: #ECECEC;
+      --mono: ui-monospace, "SFMono-Regular", Menlo, "JetBrains Mono", "DejaVu Sans Mono", monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--mono);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 72px 24px 56px;
+      text-align: center;
+    }
+    .mark {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      margin: 0 0 4px;
+    }
+    .tagline {
+      color: var(--sub);
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      margin: 0 0 40px;
+    }
+    .riri {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      display: block;
+      margin: 0 auto 40px;
+    }
+    .intro {
+      font-size: 17px;
+      max-width: 460px;
+      margin: 0 auto 48px;
+    }
+    .intro strong { font-weight: 800; }
+    .channels {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 320px;
+      margin: 0 auto 56px;
+    }
+    .channels a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 15px;
+      transition: border-color 0.15s ease;
+    }
+    .channels a:hover { border-color: var(--ink); }
+    .channels .handle { color: var(--sub); font-size: 13px; }
+    footer {
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+      color: var(--sub);
+      font-size: 13px;
+    }
+    footer a { color: var(--sub); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+    footer .legal { margin-top: 8px; }
+    footer .legal a { text-decoration: underline; }
+    @media (prefers-color-scheme: dark) {
+      /* Brand is intentionally pure white — keep it fixed. */
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1 class="mark">Riri</h1>
+    <p class="tagline">RIRI ARCHIVE</p>
+
+    <img class="riri" src="riri.png" alt="Riri" />
+
+    <p class="intro">
+      <strong>A new Riri arrives every day.</strong><br />
+      Different outfits, same freedom of thought.
+    </p>
+
+    <nav class="channels">
+      <a href="https://www.instagram.com/riristhinking" target="_blank" rel="noopener">
+        <span>Instagram</span><span class="handle">@riristhinking</span>
+      </a>
+      <a href="https://www.tiktok.com/@riristhinking" target="_blank" rel="noopener">
+        <span>TikTok</span><span class="handle">@riristhinking</span>
+      </a>
+      <a href="https://www.youtube.com/@riristhinking" target="_blank" rel="noopener">
+        <span>YouTube</span><span class="handle">@riristhinking</span>
+      </a>
+    </nav>
+
+    <footer>
+      <div><a href="mailto:CONTACT_EMAIL_PLACEHOLDER">CONTACT_EMAIL_PLACEHOLDER</a></div>
+      <div class="legal">
+        <a href="terms.html">Terms of Service</a> · <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
