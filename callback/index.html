@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Authorization Callback — Riri</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --ink: #141414;
+      --sub: #8C8C8C;
+      --line: #ECECEC;
+      --err: #FF3B30;
+      --mono: ui-monospace, "SFMono-Regular", Menlo, "JetBrains Mono", "DejaVu Sans Mono", monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--mono);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    .wrap { max-width: 560px; margin: 0 auto; padding: 72px 24px; text-align: center; }
+    h1 { font-size: 20px; font-weight: 800; margin: 0 0 4px; }
+    .sub { color: var(--sub); font-size: 13px; margin: 0 0 40px; }
+    .label { color: var(--sub); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 10px; }
+    .code {
+      font-size: 18px;
+      font-weight: 800;
+      word-break: break-all;
+      background: #FAFAFA;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 18px;
+      margin: 0 0 16px;
+    }
+    button {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--bg);
+      background: var(--ink);
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 22px;
+      cursor: pointer;
+    }
+    button:active { opacity: 0.85; }
+    .state { color: var(--sub); font-size: 12px; margin: 28px 0 0; word-break: break-all; }
+    .error {
+      color: var(--err);
+      border: 1px solid var(--err);
+      border-radius: 10px;
+      padding: 18px;
+      font-size: 14px;
+      text-align: left;
+      word-break: break-word;
+    }
+    .note { color: var(--sub); font-size: 12px; margin: 32px 0 0; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Authorization Callback</h1>
+    <p class="sub">Copy the code below into your terminal.</p>
+    <div id="content"></div>
+    <p class="note">This code is single-use and expires shortly. It is only shown here &mdash; nothing is stored or sent anywhere.</p>
+  </main>
+
+  <script>
+    // Read-only display of OAuth callback params. No storage, no network calls.
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var code = params.get('code');
+      var state = params.get('state');
+      var error = params.get('error');
+      var errorDesc = params.get('error_description');
+      var el = document.getElementById('content');
+
+      function esc(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+
+      if (error) {
+        el.innerHTML =
+          '<div class="error"><strong>' + esc(error) + '</strong>' +
+          (errorDesc ? '<br />' + esc(errorDesc) : '') + '</div>';
+        return;
+      }
+
+      if (!code) {
+        el.innerHTML = '<div class="error">No authorization code found in the URL.</div>';
+        return;
+      }
+
+      el.innerHTML =
+        '<p class="label">Authorization code</p>' +
+        '<div class="code" id="code">' + esc(code) + '</div>' +
+        '<button id="copy" type="button">Copy</button>' +
+        (state ? '<p class="state">state: ' + esc(state) + '</p>' : '');
+
+      var btn = document.getElementById('copy');
+      btn.addEventListener('click', function () {
+        navigator.clipboard.writeText(code).then(
+          function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1500); },
+          function () { btn.textContent = 'Copy failed — select manually'; }
+        );
+      });
+    })();
+  </script>
+</body>
+</html>
